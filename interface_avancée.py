@@ -19,14 +19,26 @@ def ch_update_label(decalage):
 
 def dech_update_label(decalage):
     """ récupère les entrées et lance le code associé si il y a un texte """
-    ch_str_decalage.configure(text="Decalage de "+str(round(decalage)))
-    texte = ch_str_entree.get()
+    dech_str_decalage.configure(text="Decalage de "+str(round(decalage)))
+    texte = dech_str_entree.get()
     if texte != '':
         sortie = ch_dech.dechiffrage(texte, round(decalage))
-        ch_str_sortie.configure(state="normal")
-        ch_str_sortie.delete("1.0", ctk.END)
-        ch_str_sortie.insert(ctk.END, sortie)
-        ch_str_sortie.configure(state="disabled")
+        dech_str_sortie.configure(state="normal")
+        dech_str_sortie.delete("1.0", ctk.END)
+        dech_str_sortie.insert(ctk.END, sortie)
+        dech_str_sortie.configure(state="disabled")
+        box.update()
+
+
+def avdech_update_label():
+    """ récupère les entrées et lance le code associé si il y a un texte """
+    texte = avdech_str_entree.get()
+    if texte != '':
+        sortie = dech.dechiffrage(texte.upper())
+        avdech_str_sortie.configure(state="normal")
+        avdech_str_sortie.delete("1.0", ctk.END)
+        avdech_str_sortie.insert(ctk.END, sortie[0])
+        avdech_str_sortie.configure(state="disabled")
         box.update()
 
 
@@ -35,6 +47,7 @@ taille = 4
 # textes
 texte_grand = ('Arial', 18, 'bold')
 texte_petit = ('Arial', 14)
+texte_bouton = ('Arial', 14, 'bold')
 # couleurs
 color_groupes = "#505050"
 
@@ -48,10 +61,10 @@ avdech -> dechiffrement avancé
 
 # parametres de la fenetre
 box = ctk.CTk()
-box.geometry("400x300")
+box.geometry("900x350")
 box.title("Code César")
 box.iconbitmap('./icone.ico')
-
+box.minsize(900, 350)
 
                                   ### ___ parties ___ ###
 
@@ -59,7 +72,7 @@ box.iconbitmap('./icone.ico')
 ### ___ chiffrement ___ ###
 # boite
 ch_box = ctk.CTkFrame(master=box, width=400, height=200, corner_radius=15)
-ch_box.pack(pady=10, padx=10, fill="both", expand=True)
+ch_box.pack(pady=10, padx=10, fill="both", expand=True, side="left")
 ctk.CTkLabel(master=ch_box, text="Chiffrement", font=texte_grand).pack(pady=10)
 
 # entrée utilisateur
@@ -85,7 +98,7 @@ ch_str_sortie.configure(state="disabled")
 ### ___ dechiffrement ___ ###
 # boite
 dech_box = ctk.CTkFrame(master=box, width=400, height=200, corner_radius=15)
-dech_box.pack(pady=10, padx=10, fill="both", expand=True)
+dech_box.pack(pady=10, padx=10, fill="both", expand=True, side="left")
 ctk.CTkLabel(master=dech_box, text="Déchiffrement", font=texte_grand).pack(pady=10)
 
 # entrée utilisateur
@@ -108,8 +121,25 @@ dech_str_sortie.configure(state="disabled")
 
 
 
+### ___ dechiffrement avance ___ ###
+# boite
+avdech_box = ctk.CTkFrame(master=box, width=400, height=200, corner_radius=15)
+avdech_box.pack(pady=10, padx=10, fill="both", expand=True, side="left")
+ctk.CTkLabel(master=avdech_box, text="Déchiffrement avancé", font=texte_grand).pack(pady=10)
 
+# entrée utilisateur
+avdech_str_entree = ctk.CTkEntry(master=avdech_box, placeholder_text="Entrez le texte à déchiffrer ...")
+avdech_str_entree.pack(pady=10, fill="x", padx=20)
 
+# bouton de dechiffrage
+ctk.CTkButton(avdech_box, text="Déchiffrer", command=avdech_update_label, fg_color='#555555', hover_color='#444444').pack(pady=(0, 10))
+
+# sortie
+ctk.CTkLabel(master=avdech_box, text="Texte déchiffré :", font=texte_petit).pack(pady=(10,0))
+avdech_str_sortie = ctk.CTkTextbox(master=avdech_box, height=100, wrap="word")
+avdech_str_sortie.pack(pady=(0,10), fill="x", padx=20)
+avdech_str_sortie.insert("1.0", "")
+avdech_str_sortie.configure(state="disabled")
 
 
 
