@@ -9,7 +9,7 @@ def ch_update_label(decalage):
     ch_str_decalage.configure(text="Decalage de "+str(round(decalage)))
     texte = ch_str_entree.get()
     if texte != '':
-        sortie = ch_dech.chiffrage(texte, round(decalage))
+        sortie = ch_dech.code(texte, round(decalage))
         ch_str_sortie.configure(state="normal")
         ch_str_sortie.delete("1.0", ctk.END)
         ch_str_sortie.insert(ctk.END, sortie)
@@ -22,7 +22,7 @@ def dech_update_label(decalage):
     dech_str_decalage.configure(text="Decalage de "+str(round(decalage)))
     texte = dech_str_entree.get()
     if texte != '':
-        sortie = ch_dech.dechiffrage(texte, round(decalage))
+        sortie = ch_dech.decode(texte, round(decalage))
         dech_str_sortie.configure(state="normal")
         dech_str_sortie.delete("1.0", ctk.END)
         dech_str_sortie.insert(ctk.END, sortie)
@@ -39,11 +39,13 @@ def avdech_update_label():
         avdech_str_sortie.delete("1.0", ctk.END)
         avdech_str_sortie.insert(ctk.END, sortie[0])
         avdech_str_sortie.configure(state="disabled")
+        avdech_str_dec.configure(text="Décalage : "+str(sortie[1]))
         box.update()
 
 
 # variables
 taille = 4
+nombre_caracteres = 63
 # textes
 texte_grand = ('Arial', 18, 'bold')
 texte_petit = ('Arial', 14)
@@ -82,7 +84,7 @@ ch_str_entree.pack(pady=10, fill="x", padx=20)
 # barre de decalage
 ch_str_decalage = ctk.CTkLabel(master=ch_box, text="decalage de 0", font=texte_petit)
 ch_str_decalage.pack(pady=(10,0))
-ch_decalage = ctk.CTkSlider(master=ch_box, from_=0, to=26, command=ch_update_label, number_of_steps=26)
+ch_decalage = ctk.CTkSlider(master=ch_box, from_=0, to=nombre_caracteres, command=ch_update_label, number_of_steps=nombre_caracteres)
 ch_decalage.set(0)
 ch_decalage.pack(pady=(0, 10))
 
@@ -108,7 +110,7 @@ dech_str_entree.pack(pady=10, fill="x", padx=20)
 # barre de decalage
 dech_str_decalage = ctk.CTkLabel(master=dech_box, text="decalage de 0", font=texte_petit)
 dech_str_decalage.pack(pady=(10,0))
-dech_decalage = ctk.CTkSlider(master=dech_box, from_=0, to=26, command=dech_update_label, number_of_steps=26)
+dech_decalage = ctk.CTkSlider(master=dech_box, from_=0, to=nombre_caracteres, command=dech_update_label, number_of_steps=nombre_caracteres)
 dech_decalage.set(0)
 dech_decalage.pack(pady=(0, 10))
 
@@ -135,7 +137,10 @@ avdech_str_entree.pack(pady=10, fill="x", padx=20)
 ctk.CTkButton(avdech_box, text="Déchiffrer", command=avdech_update_label, fg_color='#555555', hover_color='#444444').pack(pady=(0, 10))
 
 # sortie
-ctk.CTkLabel(master=avdech_box, text="Texte déchiffré :", font=texte_petit).pack(pady=(10,0))
+avdech_str_dec = ctk.CTkLabel(master=avdech_box, text="Décalage : ", font=texte_petit)
+avdech_str_dec.pack(pady=(10,0))
+
+ctk.CTkLabel(master=avdech_box, text="Texte déchiffré :", font=texte_petit).pack()
 avdech_str_sortie = ctk.CTkTextbox(master=avdech_box, height=100, wrap="word")
 avdech_str_sortie.pack(pady=(0,10), fill="x", padx=20)
 avdech_str_sortie.insert("1.0", "")

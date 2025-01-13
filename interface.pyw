@@ -20,7 +20,7 @@ def recup_entry_ch():
     texte = txt_ch.get()
     if texte != '':
         decalage = int(dec_ch.get())
-        sortie = ch_dech.chiffrage(texte, decalage)
+        sortie = ch_dech.code(texte, decalage)
         data_string_ch.delete("1.0", tk.END)
         data_string_ch.insert(tk.END, sortie)
 
@@ -31,7 +31,7 @@ def recup_entry_dech():
     texte = txt_dech.get()
     if texte != '':
         decalage = int(dec_dech.get())
-        sortie = ch_dech.dechiffrage(texte, decalage)
+        sortie = ch_dech.decode(texte, decalage)
         data_string_dech.delete("1.0", tk.END)
         data_string_dech.insert(tk.END, sortie)
 
