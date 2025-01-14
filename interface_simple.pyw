@@ -15,7 +15,7 @@ largeur = 4
 
 
 # recuerer l'entrée pour le chiffrage
-def recup_entry_ch():
+def recup_entry_ch() -> None:
     """ récupère les entrées et lance le code associé si il y a un texte """
     texte = txt_ch.get()
     if texte != '':
@@ -26,7 +26,7 @@ def recup_entry_ch():
 
 
 # recuperer l'entrée pour le dechiffrage
-def recup_entry_dech():
+def recup_entry_dech() -> None:
     """ récupère les entrées et lance le code associé si il y a un texte """
     texte = txt_dech.get()
     if texte != '':
@@ -37,7 +37,7 @@ def recup_entry_dech():
 
 
 # recuperer l'entrée pour le dechiffrage avancé
-def recup_entry_dech_2():
+def recup_entry_dech_2() -> None:
     """ récupère les entrées et lance le code associé si il y a un texte """
     texte = txt_dech_2.get().upper()
     if texte != '':

@@ -4,7 +4,7 @@ import chiffre_dechiffre as ch_dech
 
 
 
-def ch_update_label(decalage):
+def ch_update_label(decalage:int) -> None:
     """ récupère les entrées et lance le code associé si il y a un texte """
     ch_str_decalage.configure(text="Decalage de "+str(round(decalage)))
     texte = ch_str_entree.get()
@@ -17,7 +17,7 @@ def ch_update_label(decalage):
         box.update()
 
 
-def dech_update_label(decalage):
+def dech_update_label(decalage:int) -> None:
     """ récupère les entrées et lance le code associé si il y a un texte """
     dech_str_decalage.configure(text="Decalage de "+str(round(decalage)))
     texte = dech_str_entree.get()
@@ -30,7 +30,7 @@ def dech_update_label(decalage):
         box.update()
 
 
-def avdech_update_label():
+def avdech_update_label() -> None:
     """ récupère les entrées et lance le code associé si il y a un texte """
     texte = avdech_str_entree.get()
     if texte != '':
