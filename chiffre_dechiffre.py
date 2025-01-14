@@ -30,8 +30,6 @@ def dechiffrage_maj(texte:str, decalage:int) -> str:
 
 
 
-
-
 def cree_dictionnaire_decalage(decalage:int) -> dict:
     """ crée un dictionnaire avec un decalage de decalage """
     symboles_dans_dictionnaire = [chr(i) for i in range(65, 91)] + [chr(i) for i in range(97, 123)] + [chr(i) for i in range(48, 58)] + [" "]

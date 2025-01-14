@@ -21,3 +21,4 @@ Pour demarrer le programme:
 ### Janvier 2025 maxime:
 - création d'une autre interface avec custom Tkinter
 - résolution de bugs sur le systeme de chiffrement (dictionnaire de chiffrement)
+- mise en place de création de listes et de dictionnaire par compréhention
