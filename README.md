@@ -22,3 +22,4 @@ Pour demarrer le programme:
 - création d'une autre interface avec custom Tkinter
 - résolution de bugs sur le systeme de chiffrement (dictionnaire de chiffrement)
 - mise en place de création de listes et de dictionnaire par compréhention
+- mise en place du bouton copier
