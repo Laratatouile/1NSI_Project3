@@ -9,12 +9,14 @@ def ch_update_label(decalage:int) -> None:
     ch_str_decalage.configure(text="Decalage de "+str(round(decalage)))
     texte = ch_str_entree.get()
     if texte != '':
-        sortie = ch_dech.code(texte, round(decalage))
+        global ch_sortie
+        ch_sortie = ch_dech.code(texte, round(decalage))
         ch_str_sortie.configure(state="normal")
         ch_str_sortie.delete("1.0", ctk.END)
-        ch_str_sortie.insert(ctk.END, sortie)
+        ch_str_sortie.insert(ctk.END, ch_sortie)
         ch_str_sortie.configure(state="disabled")
         box.update()
+        return None
 
 
 def dech_update_label(decalage:int) -> None:
@@ -22,25 +24,37 @@ def dech_update_label(decalage:int) -> None:
     dech_str_decalage.configure(text="Decalage de "+str(round(decalage)))
     texte = dech_str_entree.get()
     if texte != '':
-        sortie = ch_dech.decode(texte, round(decalage))
+        global dech_sortie
+        dech_sortie = ch_dech.decode(texte, round(decalage))
         dech_str_sortie.configure(state="normal")
         dech_str_sortie.delete("1.0", ctk.END)
-        dech_str_sortie.insert(ctk.END, sortie)
+        dech_str_sortie.insert(ctk.END, dech_sortie)
         dech_str_sortie.configure(state="disabled")
         box.update()
+        return None
 
 
 def avdech_update_label() -> None:
     """ récupère les entrées et lance le code associé si il y a un texte """
     texte = avdech_str_entree.get()
     if texte != '':
-        sortie = dech.dechiffrage(texte.upper())
+        global avdech_sortie
+        avdech_sortie = dech.dechiffrage(texte.upper())
         avdech_str_sortie.configure(state="normal")
         avdech_str_sortie.delete("1.0", ctk.END)
-        avdech_str_sortie.insert(ctk.END, sortie[0])
+        avdech_str_sortie.insert(ctk.END, avdech_sortie[0])
         avdech_str_sortie.configure(state="disabled")
-        avdech_str_dec.configure(text="Décalage : "+str(sortie[1]))
+        avdech_str_dec.configure(text="Décalage : "+str(avdech_sortie[1]))
         box.update()
+        return None
+
+
+def copy_code(code) -> None:
+    """ copie le code dans le presse papier """
+    box.clipboard_clear()
+    box.clipboard_append(code)
+    return None
+
 
 
 # variables
@@ -63,10 +77,10 @@ avdech -> dechiffrement avancé
 
 # parametres de la fenetre
 box = ctk.CTk()
-box.geometry("900x350")
+box.geometry("900x370")
 box.title("Code César")
 box.iconbitmap('./icone.ico')
-box.minsize(900, 350)
+box.minsize(900, 370)
 
                                   ### ___ parties ___ ###
 
@@ -95,6 +109,9 @@ ch_str_sortie.pack(pady=(0,10), fill="x", padx=20)
 ch_str_sortie.insert("1.0", "")
 ch_str_sortie.configure(state="disabled")
 
+# bouton copier
+ctk.CTkButton(ch_box, text="Copier", command=lambda :copy_code(ch_sortie), fg_color='#555555', hover_color='#444444').pack(pady=(0, 10))
+
 
 
 ### ___ dechiffrement ___ ###
@@ -121,6 +138,9 @@ dech_str_sortie.pack(pady=(0,10), fill="x", padx=20)
 dech_str_sortie.insert("1.0", "")
 dech_str_sortie.configure(state="disabled")
 
+# bouton copier
+ctk.CTkButton(dech_box, text="Copier", command=lambda :copy_code(dech_sortie), fg_color='#555555', hover_color='#444444').pack(pady=(0, 10))
+
 
 
 ### ___ dechiffrement avance ___ ###
@@ -146,6 +166,8 @@ avdech_str_sortie.pack(pady=(0,10), fill="x", padx=20)
 avdech_str_sortie.insert("1.0", "")
 avdech_str_sortie.configure(state="disabled")
 
+# bouton copier
+ctk.CTkButton(avdech_box, text="Copier", command=lambda :copy_code(avdech_sortie), fg_color='#555555', hover_color='#444444').pack(pady=(0, 10))
 
 
 
