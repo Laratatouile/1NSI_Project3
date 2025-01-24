@@ -6,7 +6,7 @@ ce mini project a pour but de créer une interface de chiffrement.
 ## demarrage
 Pour demarrer le programme:
 - demarrer "interface_simple" pour une interface simple
-- demarrer "interface_style" pour une interface au style contemporain et épuré
+- demarrer "interface_style" pour une interface au style plus moderne
 
 
 ## carnet de bord
