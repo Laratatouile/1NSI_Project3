@@ -1,6 +1,3 @@
-import random
-
-
 def code(texte:str, decalage:int) -> str:
     """ chiffre le texte avec le decalage """
     dictionnaire_decalage = cree_dictionnaire_decalage(decalage)
