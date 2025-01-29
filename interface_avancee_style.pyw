@@ -16,7 +16,7 @@ def ch_update_label(decalage:int) -> None:
         ch_str_sortie.insert(ctk.END, ch_sortie)
         ch_str_sortie.configure(state="disabled")
         box.update()
-        return None
+    return None
 
 
 def dech_update_label(decalage:int) -> None:
@@ -31,7 +31,7 @@ def dech_update_label(decalage:int) -> None:
         dech_str_sortie.insert(ctk.END, dech_sortie)
         dech_str_sortie.configure(state="disabled")
         box.update()
-        return None
+    return None
 
 
 def avdech_update_label() -> None:
@@ -46,7 +46,7 @@ def avdech_update_label() -> None:
         avdech_str_sortie.configure(state="disabled")
         avdech_str_dec.configure(text="Décalage : "+str(avdech_sortie[1]))
         box.update()
-        return None
+    return None
 
 
 def copy_code(code) -> None:
